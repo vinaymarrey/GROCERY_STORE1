@@ -1,0 +1,44 @@
+
+version: "3.8"
+
+services:
+  database:
+    image: mongo:7
+    container_name: grocery-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=grocery_store
+    networks:
+      - grocery-network
+
+  backend:
+    build: ./backend
+    container_name: grocery-api
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGODB_URI=mongodb://database:27017/grocery_store
+    depends_on:
+      - database
+    networks:
+      - grocery-network
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: grocery-web
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    depends_on:
+      - backend
+    networks:
+      - grocery-network
+
+networks:
+  grocery-network:
+    driver: bridge
