@@ -4,10 +4,10 @@
   "description": "HarvestHub - Modern Grocery Store Platform",
   "main": "index.js",
   "scripts": {
+    "build": "cd backend && npm install",
     "start": "cd backend && npm start",
     "start:frontend": "cd frontend && npm run dev",
     "start:backend": "cd backend && npm start",
-    "build": "cd frontend && npm run build",
     "install:backend": "cd backend && npm install",
     "install:frontend": "cd frontend && npm install",
     "install:all": "npm run install:backend && npm run install:frontend",
