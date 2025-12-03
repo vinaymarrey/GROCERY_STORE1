@@ -180,7 +180,9 @@ const Checkout = () => {
 
       // Try to save to backend as well
       try {
-        const response = await fetch("http://localhost:5000/api/orders", {
+        const apiUrl =
+          import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+        const response = await fetch(`${apiUrl}/orders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

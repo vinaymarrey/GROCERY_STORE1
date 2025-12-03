@@ -57,7 +57,9 @@ const MyProfile = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/auth/profile", {
+      const apiUrl =
+        import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+      const response = await fetch(`${apiUrl}/auth/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
