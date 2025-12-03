@@ -1,4 +1,3 @@
-
 version: "3.8"
 
 services:
@@ -13,7 +12,7 @@ services:
       - grocery-network
 
   backend:
-    build: ./backend
+    image: vinaymarrey/grocery_store:backend
     container_name: grocery-api
     ports:
       - "5000:5000"
@@ -28,7 +27,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    image: vinaymarrey/grocery_store:frontend
     container_name: grocery-web
     ports:
       - "5173:5173"
